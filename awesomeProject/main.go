@@ -3,32 +3,30 @@ package main
 import (
 	"errors"
 	"fmt"
+	"gitlab.okta-solutions.com/mashroom/backend/verification"
+	"gitlab.okta-solutions.com/mashroom/backend/verification/impl"
 )
 
-func main()  {
+func main() {
 	dec()
 }
 
+func dec() {
+	var field verification.VerifyPostcodeQueryRequest
+	field.QueryLine = "Christchurch Fairmile Road"
 
-func dec(){
-	var strArr []string
-	er := iter(&strArr)
-	if er != nil {
-		fmt.Println(er)
-	} else {
-		fmt.Println("nil error")
+	resp, err := impl.VerifyPostcodeQueryImpl(&field)
+	if err != nil {
+		fmt.Println(err)
+	}else{
+		fmt.Println(resp.City)
+		fmt.Println(len(resp.AddressLine))
+		fmt.Println(resp.AddressLine)
 	}
-	fmt.Println(strArr)
-
-	count := 199
-	limit := 100
-	pageCount := count/limit
-
-	fmt.Println(pageCount)
 }
 
-func iter(str *[]string) error{
-	if len(*str) == 20{
+func iter(str *[]string) error {
+	if len(*str) == 20 {
 		return errors.New("limit exceed")
 	}
 
