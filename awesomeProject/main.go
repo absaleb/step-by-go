@@ -20,7 +20,7 @@ func dec(){
 	}
 	fmt.Println(strArr)
 
-	count := 199
+	count := 999
 	limit := 100
 	pageCount := count/limit
 
