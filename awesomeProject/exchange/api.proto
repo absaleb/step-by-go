@@ -1,0 +1,18 @@
+syntax="proto3";
+
+package awesomeProject.exchage;
+
+import "google/protobuf/wrappers.proto";
+
+message Req{
+    google.protobuf.Int64Value id = 1;
+}
+
+message Resp{
+    google.protobuf.StringValue name = 1;
+    google.protobuf.Int64Value id = 2;
+}
+
+service ExchangeService{
+    rpc GetAcc(Req) returns (Resp) {}
+}
